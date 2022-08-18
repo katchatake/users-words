@@ -45,10 +45,11 @@ class PassportAuthController extends Controller
   
         if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('MinatoNAmikase')->accessToken;
-            // User::where('image_id', );
-            return response()->json(['token' => $token], 200);
+            $dataResponse = User::with('roles')->where('email', $data['email'])->get();
+            // $dataResponse = User::with('roles')->get();
+            return response()->json(['token' => $token,'data'=>$dataResponse,'status'=>true], 200);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['data' => 'Unauthorised','status'=>false], 401);
         }
     }
  
