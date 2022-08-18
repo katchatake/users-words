@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\FrasesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\PassportAuthController;
+use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\PublicacionesController;
 
 /*
