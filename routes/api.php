@@ -17,18 +17,18 @@ use App\Http\Controllers\Api\PublicacionesController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-Route::get('getall-frases', [FrasesController::class, 'index']);
-Route::get('getall-comments', [PublicacionesController::class, 'index']);
-Route::post('create-frases', [FrasesController::class, 'create']);
-Route::post('activate-frase', [FrasesController::class, 'activate']);
-Route::post('reject-frase', [FrasesController::class, 'reject']);
-Route::post('add-comment', [PublicacionesController::class, 'create']);
-// Route::middleware('auth:api')->group(function () {
-//     Route::get('getall-frases', [FrasesController::class, 'index']);
-// });
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('getall-frases', [FrasesController::class, 'index']);
+    Route::get('getall-comments', [PublicacionesController::class, 'index']);
+    Route::post('create-frases', [FrasesController::class, 'create']);
+    Route::post('activate-frase', [FrasesController::class, 'activate']);
+    Route::post('reject-frase', [FrasesController::class, 'reject']);
+    Route::post('add-comment', [PublicacionesController::class, 'create']);
+});
