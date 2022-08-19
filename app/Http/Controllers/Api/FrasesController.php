@@ -114,7 +114,7 @@ class FrasesController extends Controller
 
         $dataFrase = Frases::find(intval($request->id_frase));
 
-        $dataFrase->status = 3;
+        $dataFrase->status = 2;
         $dataFrase->save();
         return response()->json(['data'=>$dataFrase,'status'=>true]);
 
