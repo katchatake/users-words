@@ -30,5 +30,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('create-frases', [FrasesController::class, 'create']);
     Route::post('activate-frase', [FrasesController::class, 'activate']);
     Route::post('reject-frase', [FrasesController::class, 'reject']);
+    Route::post('delete-frase', [FrasesController::class, 'destroy']);
     Route::post('add-comment', [PublicacionesController::class, 'create']);
 });
