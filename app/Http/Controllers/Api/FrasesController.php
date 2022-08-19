@@ -170,17 +170,17 @@ class FrasesController extends Controller
         if($validator->fails()){
             return response()->json(['Validation Error.', $validator->errors()]);
         }
+
         $dataUSer = User::where('id', intval($request->id_user))->get();
 
-        if (count($dataUSer) == 0) {
-            return response()->json(['Validation Error User.']);
+        if ($dataUSer[0]->id_role != 1) {
+            return response()->json(['Validation Error User Unauthorised.']);
         }
 
         $dataFrase = Frases::find(intval($request->id_frase));
 
-        if (count($dataFrase) == 0) {
-            return response()->json(['Validation Error Frase']);
-        }
-        $fraseDelete = Frases::withTrashed()->where('id', intval($request->id_frase))->get();
+        $dataFrase->status = 3;
+        $dataFrase->save();
+        return response()->json(['data'=>$dataFrase,'status'=>true]);
     }
 }
